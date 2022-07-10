@@ -2,9 +2,14 @@ import mojo from '@mojojs/core';
 
 const app = mojo();
 
+
+function fetchRandomInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 // GET /
 app.get('/', async ctx => {
-  let srandx = Math.random();
+  let srandx = fetchRandomInteger(1000000, 999999999999999);
   await ctx.render({text: 'API Gateway V0.43 (SecurityKey: ' + srandx + ')'});
 });
 
