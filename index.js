@@ -1,6 +1,14 @@
 import mojo from '@mojojs/core';
+import lambdaPlugin from 'mojo-plugin-lambda';
 
 const app = mojo();
+
+//for Lambda
+app.plugin(lambdaPlugin, {});
+const handler = app.handler;
+export { handler };
+// Now, Set Lambdas entrypoint to appfile.handler
+
 
 
 function fetchRandomInteger(min, max) {
@@ -36,8 +44,12 @@ app.any('/inline', async ctx => {
 });
 
 
+// Hide this for lambda Deploy
+// app.start();  
 
-app.start();
+if (! process.env.AWS_LAMBDA_FUNCTION_NAME) {
+  app.start();
+}
 
 const apiTemplate = `
 The API select numbers are <%= one %> and <%= two %>.

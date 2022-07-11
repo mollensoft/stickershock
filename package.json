@@ -1,11 +1,18 @@
 {
 
   "type": "module",
+
   "scripts": {
+
     "start": "node index.js server"
-}
 
+  },
 
-  
+  "dependencies": {
+
+    "mojo-plugin-lambda": "^1.0.0"
+
+  }
+
 }
 
